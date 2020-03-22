@@ -26,6 +26,10 @@ void loop() {
     /* Signal the timer on each pass of loop() */
     ctr.process(tempF);
 
+    /* Factor is +/- of the enactment temp, defaults to 1 */
+    ctr.factor(3);
+    uint8_t factor = factor();
+
     /* Check the current state of the pin */
     bool state = ctr.state();
 
