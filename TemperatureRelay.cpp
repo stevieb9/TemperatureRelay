@@ -1,14 +1,26 @@
 #include "Arduino.h"
 #include "TemperatureRelay.h"
 
-TemperatureRelay::TemperatureRelay (int8_t pin, uint8_t onTemp, uint8_t offTemp) : ArduinoRelay(pin) {
-    _onTemp = onTemp;
-    _offTemp = offTemp;
+TemperatureRelay::TemperatureRelay (int8_t pin, uint8_t temp) : ArduinoRelay(pin) {
+    if (mode() == MODE_COOL) {
+        _onTemp = temp;
+        _offTemp = temp - factor();
+    }
+    else if (mode() == MODE_HEAT) {
+        _onTemp = temp;
+        _offTemp = temp + factor();
+    }
 }
 
-TemperatureRelay::TemperatureRelay (uint8_t onTemp, uint8_t offTemp) : ArduinoRelay() {
-    _onTemp = onTemp;
-    _offTemp = offTemp;
+TemperatureRelay::TemperatureRelay (uint8_t temp) : ArduinoRelay() {
+    if (mode() == MODE_COOL) {
+        _onTemp = temp;
+        _offTemp = temp - factor();
+    }
+    else if (mode() == MODE_HEAT) {
+        _onTemp = temp;
+        _offTemp = temp + factor();
+    }
 }
 
 void TemperatureRelay::process (float tempF) {

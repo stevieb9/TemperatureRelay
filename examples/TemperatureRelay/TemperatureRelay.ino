@@ -1,14 +1,13 @@
 #include "TemperatureRelay.h"
 
 #define RELAY_PIN   2
-#define ON_TEMP   78
-#define OFF_TEMP  77
+#define TEMP   78
 
 /* Normal constructor */
-TemperatureRelay ctr(RELAY_PIN, ON_TEMP, OFF_TEMP);
+TemperatureRelay ctr(RELAY_PIN, TEMP);
 
 /* No pin constructor */
-//TemperatureRelay ctr(ON_TEMP, OFF_TEMP);
+//TemperatureRelay ctr(TEMP);
 
 void setup() {
     /* Optionally set a name for the object */
@@ -37,8 +36,8 @@ void loop() {
     char* name = ctr.name();
 
     /* Get the on or off temp */
-    unsigned long onTemp  = ctr.onTemp();
-    unsigned long offTemp = ctr.offTemp();
+    uint8_t onTemp  = ctr.onTemp();
+    uint8_t offTemp = ctr.offTemp();
 
     /* Set the on and off temps */
     ctr.onTemp(ON_TEMP);
