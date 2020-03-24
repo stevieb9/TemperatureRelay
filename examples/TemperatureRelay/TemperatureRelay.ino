@@ -10,9 +10,6 @@ TemperatureRelay ctr(RELAY_PIN, TEMP);
 //TemperatureRelay ctr(TEMP);
 
 void setup() {
-    /* Optionally set a name for the object */
-    ctr.name("CTR");
-
     /* Reverse: On = LOW, Off = HIGH */
     //ctr.reverse(true);
 
@@ -36,9 +33,6 @@ void loop() {
     /* Check reverse state */
     bool reversed = ctr.reverse();
     
-    /* Get the name of the object */
-    char* name = ctr.name();
-
     /* Get the on or off temp */
     uint8_t onTemp  = ctr.onTemp();
     uint8_t offTemp = ctr.offTemp();
